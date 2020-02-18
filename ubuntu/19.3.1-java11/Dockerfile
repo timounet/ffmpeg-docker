@@ -1,15 +1,15 @@
 FROM tperdriau/ubuntu-graalvm:19.3.1-java11
 USER root
-RUN apt-get update
+RUN apt-get -q update
 
-RUN apt-get install ffmpeg -y
+RUN apt-get -q install ffmpeg -y
 
 # Clean
-RUN apt-get clean
-RUN apt-get autoclean
-RUN apt-get autoremove
+RUN apt-get -q clean
+RUN apt-get -q autoclean
+RUN apt-get -q autoremove
 
 USER 1001
 WORKDIR /project
 
-CMD mvn
+CMD [ "/deployments/run-java.sh" ]
